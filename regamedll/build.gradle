@@ -23,8 +23,8 @@ import org.apache.commons.compress.archivers.ArchiveInputStream
 
 apply plugin: 'cpp'
 apply plugin: IccCompilerPlugin
-apply plugin: RegamedllPlayTestPlugin
-apply plugin: gradlecpp.CppUnitTestPlugin
+//apply plugin: RegamedllPlayTestPlugin
+//apply plugin: gradlecpp.CppUnitTestPlugin
 
 repositories {
 	maven {
@@ -37,12 +37,12 @@ configurations {
 }
 
 dependencies {
-	regamedll_tests 'regamedll.testdemos:cstrike-basic:1.0'
+	//regamedll_tests 'regamedll.testdemos:cstrike-basic:1.0'
 }
 
 project.ext.dep_cppunitlite = project(':dep/cppunitlite')
 
-void createIntergrationTestTask(NativeBinarySpec b) {
+/*void createIntergrationTestTask(NativeBinarySpec b) {
 	boolean regamedllFixes = b.flavor.name.contains('regamedllFixes')
 	boolean mpLib = b.name.toLowerCase().contains('mp')
 
@@ -77,7 +77,7 @@ void createIntergrationTestTask(NativeBinarySpec b) {
 	}
 
 	b.buildTask.dependsOn demoItgTestTask
-}
+}*/
 
 void postEvaluate(NativeBinarySpec b) {
 
@@ -86,7 +86,7 @@ void postEvaluate(NativeBinarySpec b) {
 		t.dependsOn project.generateAppVersion
 	}
 
-	createIntergrationTestTask(b)
+	//createIntergrationTestTask(b)
 }
 
 void setupToolchain(NativeBinarySpec b)
@@ -240,7 +240,7 @@ class RegamedllSrc {
 
 model {
 	buildTypes {
-		debug
+		//debug
 		release
 	}
 
@@ -258,12 +258,12 @@ model {
 	}
 
 	flavors {
-		regamedllNofixes
+		//regamedllNofixes
 		regamedllFixes
 	}
 
 	components {
-		regamedll_hooker_gamedll(NativeLibrarySpec) {
+		/*regamedll_hooker_gamedll(NativeLibrarySpec) {
 			targetPlatform 'x86'
 			baseName 'filesystem_stdio'
 
@@ -274,7 +274,7 @@ model {
 			}
 
 			binaries.all { NativeBinarySpec b -> project.setupToolchain(b) }
-		}
+		}*/
 
 		regamedll_mp_gamedll(NativeLibrarySpec) {
 			targetPlatform 'x86'
@@ -287,7 +287,7 @@ model {
 			binaries.all { NativeBinarySpec b -> project.setupToolchain(b) }
 		}
 
-		regamedll_hooker_gamedll_tests(NativeExecutableSpec) {
+		/*regamedll_hooker_gamedll_tests(NativeExecutableSpec) {
 			targetPlatform 'x86'
 			sources {
 				RegamedllSrc.regamedll_pch(it)
@@ -296,7 +296,7 @@ model {
 			}
 
 			binaries.all { NativeBinarySpec b -> project.setupToolchain(b) }
-		}
+		}*/
 
 		regamedll_mp_gamedll_tests(NativeExecutableSpec) {
 			targetPlatform 'x86'
