@@ -584,11 +584,9 @@ public:
 	void SetObserverAutoDirector(bool val) { m_bObserverAutoDirector = val; }
 	bool IsObservingPlayer(CBasePlayer *pPlayer);
 	bool CanSwitchObserverModes() const { return m_canSwitchObserverModes; }
-	void Intense()
-	{
-		//m_musicState = INTENSE;
-		//m_intenseTimestamp = gpGlobals->time;
-	}
+	void SendItemStatus();
+	edict_t *EntSelectSpawnPoint();
+
 #ifdef REGAMEDLL_ADD
 	CCSPlayer *CSPlayer() const;
 #endif
